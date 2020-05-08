@@ -36,3 +36,14 @@ Online Judge系统（简称OJ）是一个在线的判题系统。用户可以在
     
     3. 考虑安全性，控制用户输入数据，更改密码会生成加密的token。
     
+运行截图：
+
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/1.png)
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/2.png)
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/3.png)
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/4.png)
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/5.png)
+
+移动端查看：
+
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/6.png)
