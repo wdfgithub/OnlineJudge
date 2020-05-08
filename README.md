@@ -41,6 +41,7 @@ Online Judge系统（简称OJ）是一个在线的判题系统。用户可以在
 ![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/1.png)
 ![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/2.png)
 ![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/3.png)
+![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/9.png)
 ![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/4.png)
 ![image](https://raw.githubusercontent.com/wdfgithub/OnlineJudge/master/screenshot/5.png)
 
