@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<style type="text/css">
+body{
+	background-color: #f3f3f4;
+    text-align: center;
+}
+ .container{
+	display:table;
+	height:100%;
+}
+.btn:hover {
+color: #f3f3f4;
+}
+.row{
+	display: table-cell;
+	vertical-align: middle;
+}
+/* centered columns styles */
+.row-centered {
+	text-align:center;
+}
+.col-centered {
+	display:inline-block;
+	float:none;
+	text-align:center;
+	margin-right:-4px;
+}
+.mybt{
+	background-color:#494a5f;
+	color:#f3f3f4;
+}
+</style>
+<title>注册</title>
+</head>
+<body>
+<script type="text/javascript">
+	function refresh(){
+		registerForm.imgValidate.src="validate.jsp?id="+Math.random();
+	}
+	var xmlHttp=false;
+	if(window.XMLHttpRequest){
+		xmlHttp=new XMLHttpRequest();
+	}
+	else if(window.ActiveXObject){
+		try{
+			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){
+			try{
+				xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}catch(e){
+				window.alert("该浏览器不支持AJAX");
+			}
+		}
+	}
+	 function checkForm(){
+			var username=registerForm.username.value;
+			var email=registerForm.email.value;
+			var code=registerForm.code.value;
+			var password=registerForm.password.value;
+			var regexpw = /^[A-Za-z0-9]{6,20}$/;
+			var regexe = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+			var regexun = [\u4e00-\u9fa5_a-zA-Z0-9_]{4,10};
+			if(username==""){
+				alert("请输入用户名！");
+			}else if(email==""){
+				alert("请输入邮箱！");
+			}else if(password==""){
+				alert("请输入密码！");
+			}else if(code==""){
+				alert("请输入验证码！");
+			}else if(!regexpw.test(password)){
+				alert("密码应为6-20位字母数字组合！");
+			}else if(!regexun.test(username)){
+				alert("用户名应为4-10位字母数字中文组合！");
+			}else if(!regexe.test(email)){
+				alert("邮箱格式错误！");
+			}else{
+				var url="/OnlineJudge/servlet/CheckformServlet?username="+username+"&email="+email+"&code="+code;
+				xmlHttp.open("POST",url,true);
+				xmlHttp.onreadystatechange=function(){
+					if(xmlHttp.readyState==4){
+						alert(xmlHttp.responseText);
+						if(xmlHttp.responseText.trim()=="注册成功"){
+							registerForm.submit();
+						}
+					}
+				}
+				xmlHttp.send();
+			}
+			refresh();
+	}
+</script>
+
+
+<div class="container">
+	<div class="row row-centered">
+		<div class="col-md-5 col-centered">
+		<br>
+		<br>
+		<h2>欢迎注册</h2>
+		<form role="form" name="registerForm" action="servlet/RegisterServlet" method="post">
+		<div class="form-group">
+			<input class="form-control" type="text" name="username" placeholder="请输入用户名">
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="email" placeholder="请输入邮箱">
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="password" name="password" placeholder="请输入密码">
+		</div>
+		<div class="form-group form-inline">
+			<img class="img-rounded pull-left" name="imgValidate" src="validate.jsp" onClick="refresh()">
+			<input class="form-control pull-right" type="text" name="code" placeholder="请输入验证码">
+		</div>
+		<br>
+		<br>
+		<br>
+		<div class="form-group">
+			
+			<input class="btn mybt btn-block" type="button" value="注册" onClick="checkForm()">
+		</div>
+		</form>
+		<small>已有账号？</small><br>
+		<a href="login.html"><small>去登陆</small></a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

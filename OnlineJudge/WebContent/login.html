@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>登陆</title>
+<style type="text/css">
+.btn:hover {
+color: #f3f3f4;
+}
+body{
+	background-color: #f3f3f4;
+    text-align: center;
+}
+ .container{
+	display:table;
+	height:100%;
+}
+.row{
+	display: table-cell;
+	vertical-align: middle;
+}
+/* centered columns styles */
+.row-centered {
+	text-align:center;
+}
+.col-centered {
+	display:inline-block;
+	float:none;
+	text-align:center;
+	margin-right:-4px;
+}
+.mybt{
+	background-color:#494a5f;
+	color:#f3f3f4;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+var xmlHttp=false;
+if(window.XMLHttpRequest){
+	xmlHttp=new XMLHttpRequest();
+}
+else if(window.ActiveXObject){
+	try{
+		xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+	}catch(e){
+		try{
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}catch(e){
+			window.alert("该浏览器不支持AJAX");
+		}
+	}
+}
+function checkForm(){
+	var username=loginForm.username.value;
+	var password=loginForm.password.value;
+	if(username==""){
+		alert("请输入登录邮箱或用户名！");
+	}else if(password==""){
+		alert("请输入密码！");
+	}else{
+		var url="/OnlineJudge/servlet/LoginServlet?username="+username+"&password="+password;
+		xmlHttp.open("POST",url,true);
+		xmlHttp.onreadystatechange=function(){
+			if(xmlHttp.readyState==4){
+				alert(xmlHttp.responseText);
+				if(xmlHttp.responseText.trim()=="登陆成功，跳转中..."){
+					window.location.href="challenge.jsp";
+				}
+			}
+		}
+		xmlHttp.send();
+	}
+}
+</script>
+
+<div class="container">
+	<div class="row row-centered">
+		<div class="col-md-5 col-centered">
+		<br>
+		<br>
+			<h2>欢迎登陆</h2>
+			<form  role="form" name="loginForm" method="post">
+			<div class="form-group">
+				<input class="form-control" type="text" name="username" placeholder="请输入登录邮箱或用户名">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="password" placeholder="请输入密码">
+			</div>
+			<div class="form-group">
+				<a href="forgetpassword.html" ><small>忘记密码？</small></a>
+			</div>
+			<div class="form-group">
+				<input class="btn mybt btn-block" type="button" value="登陆" onClick="checkForm()">
+			</div>
+			</form>
+				<small>还没有账号？</small><br>
+				<a href="register.html"><small>去注册</small></a>
+		</div>
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> 
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</body>
+</html>
